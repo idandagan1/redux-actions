@@ -38,6 +38,11 @@ export default function createAction(
       action.meta = metaCreator(...args);
     }
 
+    if (payload && payload.context) {
+      if (payload.context.prefix)
+         action.type = `${payload.context.prefix}_${action.type}`;
+    }
+
     return action;
   };
 
